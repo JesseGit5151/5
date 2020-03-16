@@ -68,14 +68,15 @@ function updateStock() {
     let quantity;
     sku = parseInt(prompt('Enter a sku number'));
     // console.log(sku)
-    quantity = prompt('Enter new stock quantity');
+    quantity = parseInt(prompt('Enter new stock quantity'));
 //loop through the array to get the sku numbers from your array
     for(i in inventoryArr) {
         console.log(inventoryArr[i][0])
         if(sku === inventoryArr[i][0]) {
             //arr[i][2] = inventoryArr 
-            //Use splice instead: you will splice 
-            inventoryArr.splice([i][2], 0 , quantity);
+            //See if you can use splice instead
+            inventoryArr[i][2] = quantity;
+            
         }
     }
     storage.inventoryArr = inventoryArr;
@@ -85,18 +86,19 @@ function updateStock() {
     
 }
 
-function main() {
+window.addEventListener('load', () => {
+
     displayMenu();
     let command;
-    
+
 
 while(true) {
     command = prompt('Please enter a command.');
     if (command !== null) {
         if (command === "view") {
-            viewStock(inventoryArr);
+            viewStock();
         } else if (command === "update") {
-            updateStock(inventoryArr);
+            updateStock();
         } else if (command === "exit") {
             break;
         } else {
@@ -108,8 +110,9 @@ while(true) {
 }
 
 console.log("Program terminated.");
-}
-main();
+
+});
+
 
 
 // function displayMenu() {
@@ -187,3 +190,4 @@ main();
 //         }
 //     }
 // })
+// left off adding localStorage
